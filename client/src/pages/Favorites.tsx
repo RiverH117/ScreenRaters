@@ -1,11 +1,7 @@
 import Header from "../components/Header";
 
 const Favorites: React.FC = () => {
-  return (
-    <div>
-      <Header />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Favorites;
