@@ -1,20 +1,32 @@
 import { useState } from "react";
+import Home from "../pages/Home";
+import NavBar from "../components/NavBar";
 
 function LoginPage({ onLogin }) {
+  const [hasAccount, setAccount] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  // const handleLogin = () => {
+  //   setIsLoggedIn(true);
+  // };
+
+  // const handleLogin = () => {
+  //   setIsLoggedIn(false);
+  // };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const userData = { username, password };
     onLogin(userData);
   };
+
   return (
     <div>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Email:
+          Username:
           <input
             type="email"
             name="email"
