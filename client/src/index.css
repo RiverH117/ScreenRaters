@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --font-primary: "Kumar One", "serif";
+}
+
+@layer base {
+  body {
+    @apply bg-gray-100;
+  }
+}
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -17,7 +26,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #646cff;   
   text-decoration: inherit;
 }
 a:hover {

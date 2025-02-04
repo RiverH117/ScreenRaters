@@ -9,7 +9,9 @@ const NavBar: React.FC<NavBarProps> = ({ showLinks }) => {
     <nav className="bg-gray-800 text-white w-full h-16 flex justify-between items-center px-10">
       <div className="flex flex-row font-bold space-x-4">
         <div>
-          <Link to="/">ScreenRaters</Link>
+          <Link className="font-primary text-2xl" to="/">
+            ScreenRaters
+          </Link>
         </div>
       </div>
       {showLinks && (
