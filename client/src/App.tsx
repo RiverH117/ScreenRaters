@@ -7,10 +7,13 @@ import {
 } from "react-router-dom";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import "./App.css";
+import Footer from './components/Footer';
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import Favorites from "./pages/Favorites";
+
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -44,6 +47,7 @@ function App() {
           </Routes>
         </div>
       )}
+      <Footer></Footer>
     </Router>
   );
 }
