@@ -18,41 +18,39 @@ const CreateAccountPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-xs">
-      <div className="flex justify-center mt-20">
-        <form
-          className="bg-gray shadow-md rounded px-8 py-8 pt-8 mb-4"
-          onSubmit={handleSubmit}
+    <div className="justify-items-center mt-20">
+      <form
+        className="bg-white shadow-md rounded px-8 py-8 pt-8 mb-4"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="text-center text-2xl font-bold mb-4">Create Account</h1>
+        <label>
+          Username:
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="email"
+            name="email"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            type="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+        <button
+          className="bg-gray-500 hover:bg-gray-300 rounded font-bold py-2 px-4 mt-4"
+          type="submit"
         >
-          <h1>Create Account</h1>
-          <label>
-            Username:
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="email"
-              name="email"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </label>
-          <label>
-            Password:
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-          <button
-            className="bg-gray-500 hover:bg-gray-300 rounded font-bold py-2 px-4 mt-4"
-            type="submit"
-          >
-            Create Account
-          </button>
-        </form>
-      </div>
+          Create Account
+        </button>
+      </form>
     </div>
   );
 };
