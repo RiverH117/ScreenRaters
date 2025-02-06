@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Modal from "./Modal";
+import { ModalData } from "../interfaces/ModalData";
 
 // Define the movie type
 interface Movie {
@@ -8,6 +10,8 @@ interface Movie {
   image: string;
   director: string;
   releaseDate: string;
+  comment: string;
+  rating: number;
 }
 
 // API Key from .env file
@@ -17,6 +21,7 @@ const Movies: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -43,7 +48,8 @@ const Movies: React.FC = () => {
             const creditsData = await creditsRes.json();
 
             const director =
-              creditsData.crew.find((member: any) => member.job === "Director")?.name || "Unknown";
+              creditsData.crew.find((member: any) => member.job === "Director")
+                ?.name || "Unknown";
 
             return {
               id: movie.id, // Using TMDB's built-in movie ID
@@ -70,12 +76,28 @@ const Movies: React.FC = () => {
     fetchMovies();
   }, []);
 
+  const handleSave = (data: ModalData) => {
+    // Store data in localStorage
+    localStorage.setItem(`movie-${selectedMovie?.id}`, JSON.stringify(data));
+
+    // Save data to the database
+    // axios.post("/api/save", data)
+    //   .then(response => {
+    //     console.log("Data saved to the database:", response.data);
+    //   })
+    //   .catch(error => {
+    //     console.error("Error saving data to the database:", error);
+    //   });
+  };
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold text-center mb-6">Popular Movies</h1>
 
       {/* Show loading state */}
-      {loading && <p className="text-center text-gray-600">Loading movies...</p>}
+      {loading && (
+        <p className="text-center text-gray-600">Loading movies...</p>
+      )}
 
       {/* Show error if needed */}
       {error && <p className="text-center text-red-600">{error}</p>}
@@ -84,7 +106,8 @@ const Movies: React.FC = () => {
         {movies.map((movie) => (
           <div
             key={movie.id}
-            className="max-w-sm w-full lg:max-w-full lg:flex shadow-lg rounded-lg overflow-hidden bg-white hover:shadow-xl transition-shadow"
+            className="max-w-sm w-full lg:max-w-full lg:flex shadow-lg rounded-lg overflow-hidden bg-white hover:shadow-xl transition-shadow cursor-pointer"
+            onClick={() => setSelectedMovie(movie)}
           >
             {/* Movie Poster */}
             <div className="w-48 flex-none">
@@ -98,7 +121,9 @@ const Movies: React.FC = () => {
             {/* Movie Info */}
             <div className="border border-gray-300 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal flex-1">
               <div className="mb-4">
-                <h2 className="text-gray-900 font-bold text-xl mb-2">{movie.title}</h2>
+                <h2 className="text-gray-900 font-bold text-xl mb-2">
+                  {movie.title}
+                </h2>
                 <p className="text-gray-700 text-base">{movie.description}</p>
               </div>
               <div className="text-sm text-gray-600">
@@ -109,10 +134,15 @@ const Movies: React.FC = () => {
           </div>
         ))}
       </div>
+      {selectedMovie && (
+        <Modal
+          movie={selectedMovie}
+          onClose={() => setSelectedMovie(null)}
+          onSave={handleSave}
+        />
+      )}
     </div>
   );
 };
 
 export default Movies;
-
-
