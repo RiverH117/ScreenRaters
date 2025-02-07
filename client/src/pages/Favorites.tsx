@@ -1,4 +1,4 @@
-import Header from "../components/Header";
+//import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 
 
@@ -10,7 +10,7 @@ const Favorites: React.FC = () => {
   
   return( 
     <div className = '' >
-      <Header/>
+      {/*<Header/>*/}
       <NavBar showLinks = {true}/>
       <div>
         
