@@ -14,6 +14,7 @@ import LoginPage from "./pages/LoginPage";
 import Favorites from "./pages/Favorites";
 import Footer from "./components/Footer";
 
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");

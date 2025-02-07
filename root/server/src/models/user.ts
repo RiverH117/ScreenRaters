@@ -71,3 +71,4 @@ export function UserFactory(sequelize: Sequelize): typeof User {
 
   return User;  // Return the initialized User model
 }
+
