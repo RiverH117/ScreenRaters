@@ -1,4 +1,4 @@
-interface ModalData {
+export interface ModalData {
   comment: string;
   rating: number;
   favorite: boolean;
