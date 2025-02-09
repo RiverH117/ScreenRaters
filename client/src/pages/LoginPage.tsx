@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import bcrypt from "bcryptjs";
+import React from "react";
 
 interface LoginPageProps {
   onLogin: (userData: { username: string; password: string }) => void;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ModalData } from "../types";
+import { ModalData } from "../interfaces/ModalData";
 
 interface ModalProps {
   movie: {

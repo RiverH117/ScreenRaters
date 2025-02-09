@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../components/NavBar";
+//import NavBar from "../components/NavBar";
 import bcrypt from "bcryptjs";
+import React from "react";
 
 const CreateAccountPage: React.FC = () => {
   const [username, setUsername] = useState("");

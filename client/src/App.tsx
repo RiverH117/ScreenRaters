@@ -5,7 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import axios from "axios";
+//import axios from "axios";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import "./App.css";
 import NavBar from "./components/NavBar";
@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import Favorites from "./pages/Favorites";
 import Footer from "./components/Footer";
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
