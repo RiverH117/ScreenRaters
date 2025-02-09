@@ -4,9 +4,10 @@ interface NavBarProps {
   showLinks: boolean;
   userName?: string;
   userAvatar?: string;
+  onLogout: () => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ showLinks, userName, userAvatar }) => {
+const NavBar: React.FC<NavBarProps> = ({ showLinks, userName, userAvatar, onLogout }) => {
   return (
     <nav className="bg-gray-800 text-white w-full h-16 flex justify-between items-center px-10">
       <div className="flex flex-row font-bold space-x-4">
@@ -28,6 +29,12 @@ const NavBar: React.FC<NavBarProps> = ({ showLinks, userName, userAvatar }) => {
           {userName && <span className="ml-2">Hi, {userName}</span>}
           <Link to="/home">Home</Link>
           <Link to="/favorites">Favorites</Link>
+          <button 
+            onClick={onLogout} 
+            className="text-white hover:text-red-700 font-bold"
+          >
+            Log Out
+          </button>
         </div>
       )}
     </nav>

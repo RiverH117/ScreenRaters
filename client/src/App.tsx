@@ -33,12 +33,20 @@ function App() {
     setUserAvatar(avatarUrl);
   };
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserName("");
+    setUserAvatar("");
+  };
+
+
   return (
     <Router>
       <NavBar
         showLinks={isLoggedIn}
         userName={userName}
         userAvatar={userAvatar}
+        onLogout={handleLogout}
       />
       <Routes>
         {isLoggedIn ? (
