@@ -1,21 +1,45 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-//import NavBar from "../components/NavBar";
 import bcrypt from "bcryptjs";
 import React from "react";
 
 const CreateAccountPage: React.FC = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [accountData, setAccountData] = useState({
+    username: "",
+    password: "",
+  });
   const navigate = useNavigate();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAccountData({ ...accountData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const userData = { username, password: hashedPassword };
-    localStorage.setItem(username, JSON.stringify(userData));
-    // Handle account creation logic here
-    navigate("/login");
+    const hashedPassword = await bcrypt.hash(accountData.password, 10);
+    const userData = {
+      username: accountData.username,
+      password: hashedPassword,
+    };
+
+    try {
+      const response = await fetch("http://localhost:3001/api/create-account", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      navigate("/login");
+    } catch (error) {
+      console.error("Failed to create account", error);
+    }
   };
 
   return (
@@ -30,9 +54,9 @@ const CreateAccountPage: React.FC = () => {
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="email"
-            name="email"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            name="username"
+            value={accountData.username}
+            onChange={handleChange}
           />
         </label>
         <label>
@@ -41,8 +65,8 @@ const CreateAccountPage: React.FC = () => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="password"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={accountData.password}
+            onChange={handleChange}
           />
         </label>
         <button

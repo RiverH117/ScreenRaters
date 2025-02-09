@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import { Link } from "react-router-dom";
-import bcrypt from "bcryptjs";
 import React from "react";
 
 interface LoginPageProps {
@@ -8,22 +7,37 @@ interface LoginPageProps {
 }
 
 const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const storedUser = localStorage.getItem(username);
-    if (storedUser) {
-      const userData = JSON.parse(storedUser);
-      const passwordMatch = await bcrypt.compare(password, userData.password);
-      if (passwordMatch) {
-        onLogin(userData);
-      } else {
-        alert("Invalid password");
+    try {
+      const response = await fetch("http://localhost:3001/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    } else {
-      alert("User not found");
+
+      const data = await response.json();
+      onLogin(data);
+    } catch (error) {
+      console.error("Failed to login", error);
     }
   };
 
@@ -41,8 +55,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={formData.username}
+            onChange={handleChange}
           />
         </label>
         <label>
@@ -51,8 +65,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="password"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={handleChange}
           />
         </label>
         <button
