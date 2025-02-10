@@ -7,25 +7,24 @@ class Comment extends Model {
   public content!: string;
 }
 
-Comment.init(
-  {
-    userId: {
-      type: DataTypes.INTEGER,
-      references: { model: "Users", key: "id" },
-      allowNull: false,
+  Comment.init(
+    {
+      userId: {
+        type: DataTypes.INTEGER,
+        references: { model: "Users", key: "id" },
+        allowNull: false,
+      },
+      movieOrShowId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      content: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
-    movieOrShowId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    content: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  },
-  {
-    sequelize: new Sequelize("sqlite::memory:"),
-  }
-);
-
+    {
+      sequelize: new Sequelize("sqlite::memory:"),
+    }
+  );
 export default Comment;

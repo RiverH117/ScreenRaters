@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import sequelize from "./index";
+import sequelize from "../config/connection";
 
 class Rating extends Model {
   public id!: number;

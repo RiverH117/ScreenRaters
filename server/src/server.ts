@@ -1,7 +1,7 @@
 import express from "express";
 
 // Import the connection object
-import sequelize from "./models/index.js";
+import sequelize from "./config/connection.js";
 import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
