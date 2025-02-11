@@ -26,4 +26,4 @@ export function FavoriteFactory(sequelize: Sequelize): typeof Favorite {
   );
   return Favorite;
 }
-export default Favorite
+

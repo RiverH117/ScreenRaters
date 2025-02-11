@@ -1,16 +1,11 @@
 import { Router } from "express";
-import authRoutes from "./authRoutes";
-import {favoritesRouter} from './favorites';
-import { userRouter } from "./user-routes";
-//import {Rating} from "./"
-//import {tvshowRouter} from './tvshows-routes';
+import apiRoutes from './api/index.js';
+import authRoutes from "./authRoutes.js";
+import { authenticateToken } from '../middleware/auth.js';
 
 const router = Router();
 
 router.use("/auth", authRoutes);
-router.use("/users", userRouter)
-router.use('/favorites', favoritesRouter);
-//router.use('/', streamingRouter);
-//router.use('/', tvshowRouter);
+router.use('/api', authenticateToken, apiRoutes);
 
 export default router;

@@ -1,6 +1,6 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
 
-class Comment extends Model {
+export class Comment extends Model {
   public id!: number;
   public userId!: number;
   public movieOrShowId!: number;
@@ -25,10 +25,10 @@ export function CommentFactory(sequelize: Sequelize): typeof Comment{
       },
     },
     {
-      sequelize: new Sequelize("sqlite::memory:"),
+      sequelize
     }
   );
   return Comment
 }
 
-export default Comment;
+

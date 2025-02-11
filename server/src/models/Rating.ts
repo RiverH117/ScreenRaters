@@ -1,7 +1,7 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
 
 
-expor Rating extends Model {
+export class Rating extends Model {
   public id!: number;
   public userId!: number;
   public movieOrShowId!: number;
@@ -33,5 +33,4 @@ export function RatingFactory(sequelize: Sequelize): typeof Rating{
   return Rating
 }
 
-  export default Rating;
 

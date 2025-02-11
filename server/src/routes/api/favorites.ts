@@ -1,14 +1,14 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import { Rating } from '../models/Rating';
+import { Favorite } from '../../models/Favorite.js';
 
 const router = express.Router();
 
 // GET /Favorites/: movieOrShowId - Get all Favorites by  id
 router.get('/', async (_req: Request, res: Response) => {
     try {
-      const rates = await Rating.findAll();
-      res.status(200).json(rates);
+      const favorites = await Favorite.findAll();
+      res.status(200).json(favorites);
     } catch (error) {
       res.status(500).json({ error: 'Internal Server Error' });
     }
@@ -16,9 +16,9 @@ router.get('/', async (_req: Request, res: Response) => {
 
 router.get('/:id', async (req: Request, res: Response) => {
     try {
-      const rates = await Rating.findByPk(req.params.id);
-      if (rates) {
-        res.status(200).json(rates);
+      const favorites = await Favorite.findByPk(req.params.id);
+      if (favorites) {
+        res.status(200).json(favorites);
       } else {
         res.status(404).json({ error: 'Tip not found' });
       }
@@ -31,11 +31,11 @@ router.get('/:id', async (req: Request, res: Response) => {
 router.post('/', async (req: Request, res: Response) => {
   const { userId, movieOrShowId } = req.body;
   try {
-    const newRates = await Rating.create({userId, movieOrShowId });
-    res.status(201).json(newRates)
+    const newUser = await Favorite.create({userId, movieOrShowId });
+    res.status(201).json(newUser);
   } catch (error: any) {
     res.status(400).json({ message: error.message });
   }
 });
 
-export { router as ratingRouter}
+export { router as favoritesRouter };
