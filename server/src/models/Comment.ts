@@ -7,7 +7,8 @@ class Comment extends Model {
   public content!: string;
 }
 
-  Comment.init(
+export function CommentFactory(sequelize: Sequelize): typeof Comment{
+ Comment.init(
     {
       userId: {
         type: DataTypes.INTEGER,
@@ -27,4 +28,7 @@ class Comment extends Model {
       sequelize: new Sequelize("sqlite::memory:"),
     }
   );
+  return Comment
+}
+
 export default Comment;
