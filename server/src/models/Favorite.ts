@@ -1,6 +1,6 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
 
-class Favorite extends Model {
+export class Favorite extends Model {
   public id!: number;
   public userId!: number;
   public movieOrShowId!: number;
@@ -26,3 +26,4 @@ export function FavoriteFactory(sequelize: Sequelize): typeof Favorite {
   );
   return Favorite;
 }
+

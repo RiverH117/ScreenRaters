@@ -1,15 +1,11 @@
 import { Router } from "express";
-import authRoutes from "./authRoutes";
-//import {movieRouter} from './routes/api/movie-routes';
-//import {streamingRouter} from './streaming-routes';
-//import {tvshowRouter} from './tvshows-routes';
+import apiRoutes from './api/index.js';
+import authRoutes from "./authRoutes.js";
+import { authenticateToken } from '../middleware/auth.js';
 
 const router = Router();
 
 router.use("/auth", authRoutes);
-
-//router.use('/', movieRouter);
-//router.use('/', streamingRouter);
-//router.use('/', tvshowRouter);
+router.use('/api', authenticateToken, apiRoutes);
 
 export default router;
