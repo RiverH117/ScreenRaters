@@ -23,7 +23,7 @@ const CreateAccountPage: React.FC = () => {
 
     try {
       const response = await fetch(
-        "auth/create-account",
+        "/auth/create-account",
         {
           method: "POST",
           headers: {
