@@ -4,8 +4,12 @@ import { Model, DataTypes, Sequelize } from "sequelize";
 export class Rating extends Model {
   public id!: number;
   public userId!: number;
-  public movieOrShowId!: number;
+  public movieId!: number;
   public rating!: number;
+  public review?: string;
+
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 }
 
 export function RatingFactory(sequelize: Sequelize): typeof Rating{

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import bcrypt from "bcryptjs";
 import React from "react";
 
 const CreateAccountPage: React.FC = () => {
@@ -16,26 +15,32 @@ const CreateAccountPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const hashedPassword = await bcrypt.hash(accountData.password, 10);
-    const userData = {
-      username: accountData.username,
-      password: hashedPassword,
-    };
+    // const hashedPassword = await bcrypt.hash(accountData.password, 10);
+    // const userData = {
+    //   username: accountData.username,
+    //   password: hashedPassword,
+    // };
 
     try {
-      const response = await fetch("http://localhost:3001/api/create-account", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+      const response = await fetch(
+        "auth/create-account",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: accountData.username,
+            password: accountData.password,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
 
-      //const data = await response.json();
+      const data = await response.json();
       navigate("/login");
     } catch (error) {
       console.error("Failed to create account", error);

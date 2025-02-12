@@ -1,16 +1,9 @@
 import { Router } from "express";
-import { favoritesRouter } from './favorites.js';
-import { userRouter } from "./user-routes.js";
-import { ratingRouter } from "./ratingRoutes.js"
-import { commentRouter } from './commentRoute.js';
-
+// import userRouter from "./userRoutes.js";
 
 const router = Router();
 
+// router.use('/users', userRouter);
 
-router.use("/users", userRouter)
-router.use('/favorites', favoritesRouter);
-router.use('rating', ratingRouter)
-router.use('/Comment', commentRouter);
 
 export default router;

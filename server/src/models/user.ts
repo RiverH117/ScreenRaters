@@ -1,5 +1,6 @@
 import { DataTypes, Sequelize, Model, Optional } from "sequelize";
 import bcrypt from "bcrypt";
+// import sequelize from "./index"; // Removed unused import
 
 // Define the attributes for the User model
 interface UserAttributes {
@@ -12,16 +13,11 @@ interface UserAttributes {
 interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
 
 // Define the User class extending Sequelize's Model
-export class User
-  extends Model<UserAttributes, UserCreationAttributes>
-  implements UserAttributes
+export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes
 {
   public id!: number;
   public username!: string;
   public password!: string;
-
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
 
   // Method to hash and set the password for the user
   public async setPassword(password: string) {
@@ -42,6 +38,7 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
       password: {
         type: DataTypes.STRING,
@@ -49,6 +46,7 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       },
     },
     {
+      modelName: "User", // Model name in singular form
       tableName: "users", // Name of the table in PostgreSQL
       sequelize, // The Sequelize instance that connects to PostgreSQL
       hooks: {
@@ -66,6 +64,7 @@ export function UserFactory(sequelize: Sequelize): typeof User {
     }
   );
 
-  return User; // Return the initialized User model
+  return User;
+  // Return the initialized User model
 }
 
