@@ -1,31 +1,34 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
 
-class Comment extends Model {
+export class Comment extends Model {
   public id!: number;
   public userId!: number;
   public movieOrShowId!: number;
   public content!: string;
 }
 
-Comment.init(
-  {
-    userId: {
-      type: DataTypes.INTEGER,
-      references: { model: "Users", key: "id" },
-      allowNull: false,
+export function CommentFactory(sequelize: Sequelize): typeof Comment{
+ Comment.init(
+    {
+      userId: {
+        type: DataTypes.INTEGER,
+        references: { model: "Users", key: "id" },
+        allowNull: false,
+      },
+      movieOrShowId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      content: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
-    movieOrShowId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    content: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  },
-  {
-    sequelize: new Sequelize("sqlite::memory:"),
-  }
-);
+    {
+      sequelize
+    }
+  );
+  return Comment
+}
 
-export default Comment;
+

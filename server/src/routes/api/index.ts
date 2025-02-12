@@ -5,9 +5,5 @@ const router = Router();
 
 // router.use('/users', userRouter);
 
-// router.use('/readers', readerRoutes);
-// router.use('/cards', libraryCardRoutes);
-// router.use('/authors', authorRoutes);
-// router.use('/books', bookRoutes);
 
 export default router;

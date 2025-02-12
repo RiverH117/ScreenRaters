@@ -9,9 +9,6 @@ const router = Router();
 
 router.use("/api", apiRoutes);
 router.use("/auth", authRoutes);
-
-//router.use('/', movieRouter);
-//router.use('/', streamingRouter);
-//router.use('/', tvshowRouter);
+// router.use('/api', authenticateToken, apiRoutes);
 
 export default router;
