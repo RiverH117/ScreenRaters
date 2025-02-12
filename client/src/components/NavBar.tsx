@@ -26,12 +26,17 @@ const NavBar: React.FC<NavBarProps> = ({ showLinks, userName, userAvatar, onLogo
               className="w-8 h-8 rounded-full"
             />
           )}
-          {userName && <span className="ml-2">Hi, {userName}</span>}
-          <Link to="/home">Home</Link>
-          <Link to="/favorites">Favorites</Link>
+          {userName && <span className="text-[#e0e0e0] text-xl">Hi, {userName}</span>}
+          <Link className="text-[#39FF14] hover:text-[#FF00FF] transition duration-300 ease-in-out text-xl" to="/home">
+            Home
+          </Link>
+          <Link className="text-[#39FF14] hover:text-[#FF00FF] transition duration-300 ease-in-out text-xl" to="/favorites">
+            Favorites
+          </Link>
+        
           <button 
             onClick={onLogout} 
-            className="text-white hover:text-red-700 font-bold"
+            className="text-[#39FF14] hover:text-red-700 font-bold"
           >
             Log Out
           </button>
