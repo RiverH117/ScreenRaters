@@ -1,48 +1,44 @@
 # ScreenRaters
 
-
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+A Movie/tv show application that takes in questionaire answers and uses it to prompt movies and tvshows that fit your prefrences to the homepage.
+
+- You can create an account, login, and logout.
+
+- Creating the ScreenRaters application provided a challenging experience using React to creat a full-stack application.
+
+- Working together on a team reveals how important planning and communication are to the success of a project. Not only is it critical to avoid conflicts with the work itself, but collaborative tools and iterative reviews are integral for shaping the direction of the application.
 
 ## Getting Started
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+No other dependencies are needed
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+- React
+- node.js
 
-### Executing program
+### Usage
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+1. Create an account
+2. Login using created email and password
+3. Answer the questionare
+4. HomePage will have movies and tv/shows based on your answers
+5. Click on movie or tv show prompt a model where you can comment , rate it, or favorite it into your favorites page
 
 ## Authors
 
-Contributors names and contact info
+Contributors names and contact info:
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
+*[Chris Marinica](https://github.com/chrismarinica)
+*[River Hagen](https://github.com/RiverH117)
+*[Ashlee](https://github.com/apelzer53)
+*[Bowman Crego](https://github.com/bowman-crego)
 
 
 ## License
 
-This project is licensed under the [MIT] License - see the LICENSE.md file for details
-
-## Acknowledgments
+This project is licensed under the [MIT](LICENSE) License - Click on 'LICENSE' link for more info
