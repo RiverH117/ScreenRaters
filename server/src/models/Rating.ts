@@ -1,32 +1,57 @@
-import { Model, DataTypes } from "sequelize";
-import sequelize from "./index";
+import { DataTypes, Model, Optional } from "sequelize";
+import sequelize from "../config/connection.js";
 
-class Rating extends Model {
+interface RatingAttributes {
+  id: number;
+  userId: number;
+  movieId: number;
+  rating: number;
+  review?: string;
+}
+
+interface RatingCreationAttributes extends Optional<RatingAttributes, "id"> {}
+
+class Rating
+  extends Model<RatingAttributes, RatingCreationAttributes>
+  implements RatingAttributes
+{
   public id!: number;
   public userId!: number;
-  public movieOrShowId!: number;
+  public movieId!: number;
   public rating!: number;
+  public review?: string;
+
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 }
 
 Rating.init(
   {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     userId: {
-      type: DataTypes.INTEGER,
-      references: { model: "Users", key: "id" },
+      type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
     },
-    movieOrShowId: {
-      type: DataTypes.INTEGER,
+    movieId: {
+      type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
     },
     rating: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    review: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
     sequelize,
-    modelName: "Rating",
+    tableName: "ratings",
   }
 );
 

@@ -20,16 +20,16 @@ function App() {
   const [userName, setUserName] = useState("");
   const [userAvatar, setUserAvatar] = useState("");
 
-  const handleLogin = async (userData: {
+  const handleLogin = async (data: { token: string, user: {
     username: string;
     password: string;
-  }) => {
+  }}) => {
     setIsLoggedIn(true);
-    setUserName(userData.username);
+    setUserName(data.user.username);
 
     // Fetch avatar from DiceBear Avatars API
     const avatarUrl = `https://avatar.iran.liara.run/username?username=${encodeURIComponent(
-      userData.username
+      data.user.username
     )}&background=f4d9b2&color=FF9800`;
     setUserAvatar(avatarUrl);
   };
