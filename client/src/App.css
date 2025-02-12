@@ -1,44 +1,120 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Kumar+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+
+a {
+  color: #39FF14; 
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #FF00FF; 
+}
+
+
+button {
+  background-color: black;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #333;
+}
+
+input {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 16px;
+  transition: border 0.3s ease;
+}
+
+input:focus {
+  border-color: #418f44;
+  outline: none;
+  box-shadow: 0 0 5px rgba(69, 154, 72, 0.5);
+}
+
+
+nav {
+  background: linear-gradient(45deg, #121212, #2a2a2a, #39FF14);
+  background-size: 400% 400%; 
+  animation: gradientBackground 10s ease infinite;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: none;
+}
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 200% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+nav .logo {
+  font-family: 'Bangers', cursive; 
+  font-size: 3rem; 
+  color: #39FF14; 
+  font-weight: 700;
+  text-decoration: none; 
+}
+
+nav .logo:hover {
+  color: #FF00FF; 
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7); 
+}
+
+nav a {
+  color: #e0e0e0; 
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-left: 1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+  color: #FF00FF; 
+  transform: scale(1.1); 
+}
+
+nav img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #00000074; 
+}
+
+footer {
+  background-color: #121212;
+  color: #e0e0e0;
   text-align: center;
+  padding: 20px;
+  margin-top: 0;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+footer a {
+  color: #39FF14;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer a:hover {
+  color: #388E3C;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-} */
