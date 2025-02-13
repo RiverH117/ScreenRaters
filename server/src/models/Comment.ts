@@ -1,4 +1,6 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
+import { User } from "../models/User.js"
+
 
 export class Comment extends Model {
   public id!: number;
@@ -12,7 +14,7 @@ export function CommentFactory(sequelize: Sequelize): typeof Comment{
     {
       userId: {
         type: DataTypes.INTEGER,
-        references: { model: "Users", key: "id" },
+        references: { model: User , key: "id" },
         allowNull: false,
       },
       movieOrShowId: {
@@ -25,7 +27,9 @@ export function CommentFactory(sequelize: Sequelize): typeof Comment{
       },
     },
     {
-      sequelize
+      sequelize,
+      modelName: "Comment",
+      tableName: "comments",
     }
   );
   return Comment

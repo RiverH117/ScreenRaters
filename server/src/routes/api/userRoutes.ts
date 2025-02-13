@@ -4,7 +4,7 @@ import { User } from "../../models/index.js";
 
 const router = Router();
 
-// GET all authors
+
 router.get("/", async (_req: Request, res: Response) => {
   try {
     // ! find all authors and perform a JOIN to include all associated Books
@@ -17,7 +17,7 @@ router.get("/", async (_req: Request, res: Response) => {
   }
 });
 
-// GET a single author
+
 router.get("/:id", async (req: Request, res: Response) => {
   try {
     // ! find a single author by their `id` and perform a JOIN to include the associated Books
@@ -36,7 +36,7 @@ router.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
-// CREATE an author
+
 router.post("/", async (req: Request, res: Response) => {
   try {
     const userData = await User.create(req.body);

@@ -1,4 +1,6 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
+import { User } from "../models/User.js"
+
 
 export class Favorite extends Model {
   public id!: number;
@@ -9,9 +11,9 @@ export class Favorite extends Model {
 export function FavoriteFactory(sequelize: Sequelize): typeof Favorite {
   Favorite.init(
     {
-      userId: {
-        type: DataTypes.INTEGER,
-        references: { model: "Users", key: "id" },
+      username: {
+        type: DataTypes.STRING,
+        references: { model: User, key: "username" },
         allowNull: false,
       },
       movieOrShowId: {
@@ -22,6 +24,7 @@ export function FavoriteFactory(sequelize: Sequelize): typeof Favorite {
     {
       sequelize,
       modelName: "Favorite",
+      tableName: "favorites"
     }
   );
   return Favorite;

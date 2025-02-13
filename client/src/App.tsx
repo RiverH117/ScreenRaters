@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import Favorites from "./pages/Favorites";
 import Footer from "./components/Footer";
+import AuthService from "./utils/auth.js"
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
   }}) => {
     setIsLoggedIn(true);
     setUserName(data.user.username);
+    AuthService.login(data.token);
 
     // Fetch avatar from DiceBear Avatars API
     const avatarUrl = `https://avatar.iran.liara.run/username?username=${encodeURIComponent(
@@ -40,6 +42,7 @@ function App() {
     setUserAvatar("");
   };
 
+  
 
   return (
     <Router>

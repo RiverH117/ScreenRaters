@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import { ModalData } from "../interfaces/ModalData";
-
+import axios from "axios";
+import AuthService from "../utils/auth.js"
 // Define the movie type
 interface Movie {
   id: number;
@@ -78,16 +79,43 @@ const Movies: React.FC = () => {
 
   const handleSave = (data: ModalData) => {
     // Store data in localStorage
-    localStorage.setItem(`movie-${selectedMovie?.id}`, JSON.stringify(data));
+    // localStorage.setItem(`movie-${selectedMovie?.id}`, JSON.stringify(data));
 
     // Save data to the database
-    // axios.post("/api/save", data)
-    //   .then(response => {
-    //     console.log("Data saved to the database:", response.data);
-    //   })
-    //   .catch(error => {
-    //     console.error("Error saving data to the database:", error);
-    //   });
+    axios.post("/api/ratings/", data , {
+      headers: {'Authorization': `Bearer ${AuthService.getToken()}`  }
+    })
+      .then(response => {
+        console.log("Data saved to the database:", response.data);
+      })
+      .catch(error => {
+        console.error("Error saving data to the database:", error);
+      });
+  
+axios.post("/api/favorites/", data, {
+  headers: {
+    'Authorization': `Bearer ${AuthService.getToken()}`
+  }
+})
+      .then(response => {
+        console.log("Data saved to the database:", response.data);
+      })
+      .catch(error => {
+        console.error("Error saving data to the database:", error);
+      });
+  
+    axios.post("/api/comments/", data, {
+      headers: {
+        
+        'Authorization': `Bearer ${AuthService.getToken()}`
+      }
+    })
+      .then(response => {
+        console.log("Data saved to the database:", response.data);
+      })
+      .catch(error => {
+        console.error("Error saving data to the database:", error);
+      });
   };
 
 
