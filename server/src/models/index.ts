@@ -1,5 +1,5 @@
 import sequelize from '../config/connection.js'
-import { UserFactory } from './User.js';
+import { UserFactory } from './userModel.js';
 import { FavoriteFactory } from './Favorite.js';
 import { RatingFactory } from './Rating.js';
 import {CommentFactory} from './Comment.js'
