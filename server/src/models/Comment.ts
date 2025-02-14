@@ -1,5 +1,5 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
-import { User } from "../models/User"
+import { User } from "../models/User.js"
 
 
 export class Comment extends Model {
