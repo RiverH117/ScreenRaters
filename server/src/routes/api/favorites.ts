@@ -1,6 +1,8 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import { Favorite } from '../../models/Favorite.js';
+import { Favorite } from '../../models/index.js';
+import { JwtPayload } from 'jsonwebtoken';
+
 
 const router = express.Router();
 
@@ -29,10 +31,15 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 // POST /favorites - Create a id based on your user
 router.post('/', async (req: Request, res: Response) => {
-  const { userId, movieOrShowId } = req.body;
+  const { movieOrShowId, favorite } = req.body;
+  const { username } = req.user as JwtPayload
   try {
-    const newUser = await Favorite.create({userId, movieOrShowId });
-    res.status(201).json(newUser);
+    if (favorite) {
+      const newFavorite = await Favorite.create({ movieOrShowId , username  });
+      res.status(201).json(newFavorite);
+    }else {
+      res.status(200);
+    }
   } catch (error: any) {
     res.status(400).json({ message: error.message });
   }

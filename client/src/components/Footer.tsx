@@ -1,18 +1,27 @@
-
 const Footer = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-between">
+    <div className="flex flex-col">
       <main className="flex-grow"></main>
 
-      <footer className="bg-gray-800 text-white py-2 shadow-md flex items-center justify-between px-8">
+      <footer className="bg-gray-800 text-white py-2 shadow-md flex items-center justify-between px-8 mt-4">
         <div className="text-xs">
           <p>
             Data provided by{" "}
-            <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer" className="text-blue-400">
+            <a
+              href="https://www.themoviedb.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400"
+            >
               TMDb API
             </a>{" "}
             &{" "}
-            <a href="https://www.watchmode.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400">
+            <a
+              href="https://www.watchmode.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400"
+            >
               WatchMode API
             </a>
           </p>

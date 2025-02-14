@@ -1,5 +1,5 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
-
+import { User } from "../models/User.js"
 
 export class Rating extends Model {
   public id!: number;
@@ -15,9 +15,9 @@ export class Rating extends Model {
 export function RatingFactory(sequelize: Sequelize): typeof Rating{
    Rating.init(
     {
-      userId: {
-        type: DataTypes.INTEGER,
-        references: { model: "Users", key: "id" },
+      username: {
+        type: DataTypes.STRING,
+        references: { model: User , key: "username" },
         allowNull: false,
       },
       movieOrShowId: {
@@ -25,13 +25,14 @@ export function RatingFactory(sequelize: Sequelize): typeof Rating{
         allowNull: false,
       },
       rating: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
     {
       sequelize,
       modelName: "Rating",
+      tableName: "ratings",
     }
   );
   return Rating

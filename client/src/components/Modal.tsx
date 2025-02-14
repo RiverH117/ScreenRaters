@@ -20,7 +20,7 @@ const Modal: React.FC<ModalProps> = ({ movie, onClose, onSave }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data: ModalData = { comment, rating, favorite };
+    const data: ModalData = { movieOrShowId: movie.id, comment, rating, favorite };
     onSave(data);
     onClose();
   };
