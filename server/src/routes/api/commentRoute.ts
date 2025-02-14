@@ -33,7 +33,7 @@ router.post('/', async (req: Request, res: Response) => {
   const { movieOrShowId , comment} = req.body;
   const { username } = req.user as JwtPayload
   try {
-    const newComment = await Comment.create({ username, movieOrShowId, comment});
+    const newComment = await Comment.create({ username, movieOrShowId, content: comment});
     res.status(201).json(newComment);
   } catch (error: any) {
     res.status(400).json({ message: error.message });

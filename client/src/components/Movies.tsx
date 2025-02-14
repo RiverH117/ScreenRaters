@@ -106,7 +106,6 @@ axios.post("/api/favorites/", data, {
   
     axios.post("/api/comments/", data, {
       headers: {
-        
         'Authorization': `Bearer ${AuthService.getToken()}`
       }
     })

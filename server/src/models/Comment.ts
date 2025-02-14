@@ -12,9 +12,9 @@ export class Comment extends Model {
 export function CommentFactory(sequelize: Sequelize): typeof Comment{
  Comment.init(
     {
-      userId: {
-        type: DataTypes.INTEGER,
-        references: { model: User , key: "id" },
+      username: {
+        type: DataTypes.STRING,
+        references: { model: User , key: "username" },
         allowNull: false,
       },
       movieOrShowId: {
