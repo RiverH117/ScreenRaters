@@ -1,5 +1,5 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
-import { User } from "./User.js"
+import { User } from "./index.js"
 
 
 export class Favorite extends Model {

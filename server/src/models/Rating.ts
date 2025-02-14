@@ -1,5 +1,5 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
-import { User } from "./User.js"
+import { User } from "./index.js"
 
 export class Rating extends Model {
   public id!: number;
