@@ -55,7 +55,7 @@ const createAccount = async (req: Request, res: Response) => {
     return res.status(201).json({ token, user: newUser });
   } catch (error) {
     console.error("Failed to create account", error);
-    return res.status(500).json({ message: "Failed to create account" });
+    return res.status(500).json({ message: "Failed to create user" });
   }
 };
 
