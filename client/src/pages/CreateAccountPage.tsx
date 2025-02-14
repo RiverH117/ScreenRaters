@@ -40,7 +40,7 @@ const CreateAccountPage: React.FC = () => {
         throw new Error("Network response was not ok");
       }
 
-      const data = await response.json();
+      // const data = await response.json();
       navigate("/login");
     } catch (error) {
       console.error("Failed to create account", error);

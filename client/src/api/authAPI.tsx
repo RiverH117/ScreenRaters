@@ -1,4 +1,4 @@
-import { fetchLoginData} from "../interfaces/formData";  // Import the UserLogin interface for typing userInfo
+import fetchLoginData from "../interfaces/formData";  // Import the UserLogin interface for typing userInfo
 
 // Function to send a POST request to the '/auth/login' endpoint with user login information
 const login = async (userInfo: fetchLoginData) => {
