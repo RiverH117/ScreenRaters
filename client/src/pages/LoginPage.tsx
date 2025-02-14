@@ -1,9 +1,8 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 import { Link } from "react-router-dom";
-import React from "react";
 
 interface LoginPageProps {
-  onLogin: (userData: { username: string; password: string }) => void;
+  onLogin: (data: { token: string; user: { username: string; password: string } }) => void;
 }
 
 const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
@@ -35,12 +34,19 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
       }
 
       const data = await response.json();
-      onLogin(data);
+      
+      // Include token in the response from API
+      onLogin({
+        token: data.token,  // Ensure your API returns this token
+        user: {
+          username: formData.username,
+          password: formData.password,
+        },
+      });
     } catch (error) {
       console.error("Failed to login", error);
     }
   };
-
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black to-gray-900">
@@ -49,53 +55,52 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
       <div className="bg-white rounded-lg shadow-lg px-8 py-10 w-full max-w-md">
         <h2 className="text-center text-2xl font-semibold text-gray-900 mb-4">Login</h2>
     
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <label className="block">
+            <span className="text-gray-700 font-medium">Username</span>
+            <input
+              className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          
+          <label className="block">
+            <span className="text-gray-700 font-medium">Password</span>
+            <input
+              className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </label>
 
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <label className="block">
-        <span className="text-gray-700 font-medium">Username</span>
-        <input
-          className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      
-      <label className="block">
-        <span className="text-gray-700 font-medium">Password</span>
-        <input
-          className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none"
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-      </label>
+          <button
+            className="w-full bg-black text-white font-semibold py-3 rounded-lg hover:bg-gray-800 transition-all"
+            type="submit"
+          >
+            Continue
+          </button>
 
-      <button
-        className="w-full bg-black text-white font-semibold py-3 rounded-lg hover:bg-gray-800 transition-all"
-        type="submit"
-      >
-        Continue
-      </button>
-
-      <p className="text-center text-gray-600 text-sm">
-        Don't have an account?{" "}
-        <Link to="/create-account" className="text-green-500 font-semibold hover:underline">
-          Sign up here
-        </Link>
-      </p>
-    </form>
-  </div>
-</div>
-);
+          <p className="text-center text-gray-600 text-sm">
+            Don't have an account?{" "}
+            <Link to="/create-account" className="text-green-500 font-semibold hover:underline">
+              Sign up here
+            </Link>
+          </p>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default LoginPage;
-  
+ 
 //   return (
 //     <div className="justify-items-center mt-20">
 //       <form
